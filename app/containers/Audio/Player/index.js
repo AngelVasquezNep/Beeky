@@ -32,7 +32,7 @@ const calculareAudioBuffered = (audioBuffered) =>
     end: audioBuffered.end(i),
   }));
 
-const PlayerContainer = ({ src }) => {
+const PlayerContainer = ({ src, cover }) => {
   const audioRef = useRef(null);
   const [audio, setAudio] = useState(null);
   const [audioInfo, setAudioInfo] = useState(INITIAL_PLAYER_STATE);
@@ -112,6 +112,7 @@ const PlayerContainer = ({ src }) => {
     <AudioPlayer
       {...audioInfo}
       src={src}
+      cover={cover}
       loading={loading}
       isPlaying={isPlaying}
       play={isPlaying}

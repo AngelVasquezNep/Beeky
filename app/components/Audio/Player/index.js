@@ -2,7 +2,12 @@ import { toHHMMSS } from 'utils/date';
 
 import Audio from 'components/Audio';
 
+import styles from './styles.module.css';
+
+// https://dribbble.com/shots/6840653-Concept-of-Audiobook
+
 const Player = ({
+  cover,
   title,
   currentTime,
   duration,
@@ -29,7 +34,8 @@ const Player = ({
   handleLoadedMetadata,
 }) => {
   return (
-    <div>
+    <div className={styles.Player}>
+      {cover && <img src={cover} alt={title} />}
       {loading && <p>Cargando...</p>}
       <p>{title}</p>
       {duration > 0 && (
