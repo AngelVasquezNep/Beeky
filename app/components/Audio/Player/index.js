@@ -1,6 +1,5 @@
-import { toHHMMSS } from 'utils/date';
-
 import Audio from 'components/Audio';
+import ProgressBar from './ProgressBar'
 
 import styles from './styles.module.css';
 
@@ -36,14 +35,17 @@ const Player = ({
   return (
     <div className={styles.Player}>
       {cover && <img src={cover} alt={title} />}
-      {loading && <p>Cargando...</p>}
+
       <p>{title}</p>
-      {duration > 0 && (
-        <p>
-          {toHHMMSS(currentTime)} / {toHHMMSS(duration)}
-        </p>
-      )}
+
+      <ProgressBar
+        value={currentTime}
+        max={duration}
+        handleChange={setCurrentTime}
+      />
+
       <button onClick={onTogglePlay}>{isPlaying ? 'Pause' : 'Play'} </button>
+
       <div>
         <input
           type="range"
