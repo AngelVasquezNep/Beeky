@@ -7,7 +7,8 @@
       "components": ["./app/components"],
       "containers/*": ["./app/containers/*"],
       "containers": ["./app/containers"],
-      "utils/*": ["./app/utils/*"]
+      "utils/*": ["./app/utils/*"],
+      "theme": ["./app/theme"]
     }
   }
 }
