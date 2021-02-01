@@ -32,7 +32,7 @@ const calculareAudioBuffered = (audioBuffered) =>
     end: audioBuffered.end(i),
   }));
 
-const PlayerContainer = ({ src, cover }) => {
+const PlayerContainer = ({ src, cover, title }) => {
   const audioRef = useRef(null);
   const [audio, setAudio] = useState(null);
   const [audioInfo, setAudioInfo] = useState(INITIAL_PLAYER_STATE);
@@ -63,10 +63,9 @@ const PlayerContainer = ({ src, cover }) => {
   useEffect(() => {
     if (audio) {
       audio.volume = audioInfo.volume;
-      audio.currentTime = audioInfo.currentTime;
       audio.playbackRate = audioInfo.playbackRate;
     }
-  }, [audioInfo.volume, audioInfo.currentTime, audioInfo.playbackRate]);
+  }, [audioInfo.volume, audioInfo.playbackRate]);
 
   const updateAudioInfo = (newInfo) => setAudioInfo(mergeAudioInfo(newInfo));
 
@@ -105,14 +104,16 @@ const PlayerContainer = ({ src, cover }) => {
     updateAudioInfo({ volume, muted: !audioInfo.muted });
   };
 
-  const handleSetCurrentTime = (currentTime) =>
-    updateAudioInfo({ currentTime });
+  const handleSetCurrentTime = (currentTime) => {
+    audio.currentTime = currentTime;
+  };
 
   return (
     <AudioPlayer
       {...audioInfo}
       src={src}
       cover={cover}
+      title={title}
       loading={loading}
       isPlaying={isPlaying}
       play={isPlaying}
