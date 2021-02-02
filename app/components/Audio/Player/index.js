@@ -7,19 +7,30 @@ import Audio from 'components/Audio';
 import Controls from 'components/Audio/Controls';
 import ProgressBar from 'components/Audio/ProgressBar';
 
+import { CoverLoading } from 'components/Loading';
+
 import styles from './styles.module.css';
 
-const Cover = ({ cover, title, ...rest }) =>
-  cover ? (
-    <img
-      className={styles.Cover}
-      width={250}
-      height={400}
-      src={cover}
-      alt={title}
-      {...rest}
-    />
-  ) : null;
+const Cover = ({ cover, title, loading, ...rest }) => {
+  if (cover) {
+    return (
+      <div className={styles.Cover}>
+        <CoverLoading loading={loading} />
+
+        <img
+          className={styles.CoverImage}
+          width={250}
+          height={400}
+          src={cover}
+          alt={title}
+          {...rest}
+        />
+      </div>
+    );
+  }
+
+  return null;
+};
 
 const Title = ({ title }) => <h2 className={styles.Title}>{title}</h2>;
 
@@ -52,7 +63,7 @@ const Player = ({
 }) => {
   return (
     <div className={styles.Player}>
-      <Cover cover={cover} title={title} />
+      <Cover loading={loading} cover={cover} title={title} />
 
       <Title title={title} />
 

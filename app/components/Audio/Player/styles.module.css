@@ -1,12 +1,18 @@
 .Player {
   --player-width: 250px;
+  --cover-height: 400px;
 
   width: var(--player-width);
 }
 
-img.Cover {
+.Cover {
+  position: relative;
+  height: var(--cover-height);
+}
+
+img.CoverImage {
   width: var(--player-width);
-  height: 400px;
+  height: var(--cover-height);
 }
 
 .Title {
