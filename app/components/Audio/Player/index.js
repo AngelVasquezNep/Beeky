@@ -1,9 +1,27 @@
+/**
+ * Design idea is from
+ * https://dribbble.com/shots/6840653-Concept-of-Audiobook
+ */
+
 import Audio from 'components/Audio';
-import ProgressBar from './ProgressBar'
+import Controls from 'components/Audio/Controls';
+import ProgressBar from 'components/Audio/ProgressBar';
 
 import styles from './styles.module.css';
 
-// https://dribbble.com/shots/6840653-Concept-of-Audiobook
+const Cover = ({ cover, title, ...rest }) =>
+  cover ? (
+    <img
+      className={styles.Cover}
+      width={250}
+      height={400}
+      src={cover}
+      alt={title}
+      {...rest}
+    />
+  ) : null;
+
+const Title = ({ title }) => <h2 className={styles.Title}>{title}</h2>;
 
 const Player = ({
   cover,
@@ -34,9 +52,9 @@ const Player = ({
 }) => {
   return (
     <div className={styles.Player}>
-      {cover && <img src={cover} alt={title} />}
+      <Cover cover={cover} title={title} />
 
-      <p>{title}</p>
+      <Title title={title} />
 
       <ProgressBar
         value={currentTime}
@@ -44,45 +62,18 @@ const Player = ({
         handleChange={setCurrentTime}
       />
 
-      <button onClick={onTogglePlay}>{isPlaying ? 'Pause' : 'Play'} </button>
-
-      <div>
-        <input
-          type="range"
-          min="0.5"
-          max="2"
-          step={0.1}
-          value={playbackRate}
-          onChange={({ target }) =>
-            handlePlaybackRageChanges(Number(target.value))
-          }
-        />
-        {playbackRate}x
-      </div>
-
-      <div>
-        <input
-          type="range"
-          min="0"
-          max="1"
-          step={0.1}
-          value={volume}
-          onChange={({ target }) => handleVolumeChanges(Number(target.value))}
-        />
-        {volume} vol{' '}
-        <button onClick={handleToggleMute}>
-          {muted ? '+ Sound' : '- Mute'}
-        </button>
-      </div>
-
-      <div>
-        <button onClick={() => setCurrentTime(parseInt(currentTime) - 10)}>
-          -10
-        </button>
-        <button onClick={() => setCurrentTime(parseInt(currentTime) + 10)}>
-          +10
-        </button>
-      </div>
+      <Controls
+        muted={muted}
+        volume={volume}
+        isPlaying={isPlaying}
+        onTogglePlay={onTogglePlay}
+        playbackRate={playbackRate}
+        currentTime={currentTime}
+        setCurrentTime={setCurrentTime}
+        handleToggleMute={handleToggleMute}
+        handleVolumeChanges={handleVolumeChanges}
+        handlePlaybackRageChanges={handlePlaybackRageChanges}
+      />
 
       <Audio
         play={play.toString()}

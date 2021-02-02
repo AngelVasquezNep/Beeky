@@ -1,23 +1,16 @@
-.ProgressBar {
-  position: relative;
-  padding-bottom: 0.5rem;
+.Player {
+  --player-width: 250px;
+
+  width: var(--player-width);
 }
 
-.ProgressBar-value {
-  position: absolute;
-  top: 70%;
-  color: var(--colors-primary);
-  font-size: var(--font-size-small);
-  background-color: var(--colors-white);
-  width: fit-content;
-  z-index: 5;
+img.Cover {
+  width: var(--player-width);
+  height: 400px;
 }
 
-
-.ProgressBar-max {
-  position: absolute;
-  top: 70%;
-  right: 0;
-  color: var(--colors-light-gray);
-  font-size: var(--font-size-tiny);
+.Title {
+  margin: 0.5rem 0;
+  text-align: center;
+  color: var(--colors-text);
 }
