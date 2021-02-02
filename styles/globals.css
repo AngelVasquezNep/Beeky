@@ -18,6 +18,7 @@ a {
 :root {
   /* colors */
   --colors-primary: #34cfd4;
+  --colors-primary-disabled: #0b7c80;
   --colors-light-gray: #b1b1b1;
   --colors-white: #FFFFFF;
 
