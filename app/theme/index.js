@@ -9,6 +9,7 @@ export const COLORS = {
   primaryDisabled: '#0b7c80',
   lightGray: '#b1b1b1',
   white: '#FFFFFF',
+  danger: '#dc3545',
 };
 
 export const FONT_SIZES = {

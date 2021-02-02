@@ -21,6 +21,7 @@ a {
   --colors-primary-disabled: #0b7c80;
   --colors-light-gray: #b1b1b1;
   --colors-white: #FFFFFF;
+  --colors-danger: #dc3545;
 
   /* font sizes */
   --font-size-small: 1rem;
