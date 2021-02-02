@@ -6,6 +6,7 @@
 
 export const COLORS = {
   primary: '#34cfd4',
+  primaryDisabled: '#0b7c80',
   lightGray: '#b1b1b1',
   white: '#FFFFFF',
 };
