@@ -1,15 +1,13 @@
-import { COLORS } from "theme"
-
 import BaseIcon from './BaseIcon'
 
-function PlayIcon({ color = COLORS.primary, ...rest }) {
+function PlayIcon(props) {
   return (
     <BaseIcon
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 30.051 30.051"
-      {...rest}
+      {...props}
     >
-      <g xmlns="http://www.w3.org/2000/svg" fill={color}>
+      <g xmlns="http://www.w3.org/2000/svg">
         <path
           d="M19.982 14.438l-6.24-4.536a.752.752 0 00-1.195.607v9.069a.75.75 0 001.195.606l6.24-4.532a.747.747 0 000-1.214z"
           data-original="#000000"

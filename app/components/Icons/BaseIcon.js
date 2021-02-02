@@ -1,6 +1,11 @@
 import PropTypes from 'prop-types';
+import { COLORS } from 'app/theme';
 
 const SIZES = {
+  tiny: {
+    width: 20,
+    height: 20,
+  },
   small: {
     width: 30,
     height: 30,
@@ -15,11 +20,12 @@ const SIZES = {
   },
 };
 
-const BaseIcon = ({ size, children, ...rest }) => {
+const BaseIcon = ({ size, color, children, ...rest }) => {
   const { width, height } = SIZES[size] || {};
+  const fillColor = COLORS[color]
 
   return (
-    <svg width={width} height={height} {...rest}>
+    <svg width={width} height={height} fill={fillColor} {...rest}>
       {children}
     </svg>
   );
@@ -27,6 +33,7 @@ const BaseIcon = ({ size, children, ...rest }) => {
 
 BaseIcon.defaultProps = {
   size: 'normal',
+  color: 'primary'
 };
 
 BaseIcon.propTypes = {
