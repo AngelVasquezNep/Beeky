@@ -1,13 +1,14 @@
+import classnames from 'classnames';
 import styles from './styles.module.css';
 
-const Range = (props) => (
+const Range = ({ className, ...rest }) => (
   <input
-    className={styles.Range}
+    className={classnames(styles.Range, className)}
     type="range"
     min="0"
     max="1"
     step={0.1}
-    {...props}
+    {...rest}
   />
 );
 
