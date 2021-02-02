@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import { formatDuration, toHHMMSS } from 'utils/date';
+import { toHHMMSS } from 'utils/date';
 
 import Range from 'components/Range';
 
@@ -14,7 +14,6 @@ const ProgressBar = ({ value, max, handleChange }) => {
         value={value}
         max={max}
         onChange={({ target }) => handleChange(Number(target.value))}
-        onMouseOver={({ target }) => console.log({ target })}
       />
 
       <span
