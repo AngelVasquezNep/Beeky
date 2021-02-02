@@ -1,0 +1,71 @@
+.Controls {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.Control :global(svg),
+.Control :global(svg *) {
+  transition: all 0.1s;
+}
+
+.Control:focus :global(svg),
+.Control:focus :global(svg *) {
+  fill: var(--colors-primary-disabled);
+}
+
+.ControlButton {
+  border: none;
+  border-radius: 50%;
+  background-color: transparent;
+  outline: none;
+}
+
+.ControlButton:hover {
+  cursor: pointer;
+}
+
+.PlaybackRate {
+  border: 1px solid var(--colors-primary);
+  color: var(--colors-primary);
+  background-color: transparent;
+  padding: 0.3rem;
+  border-radius: 0.3rem;
+  width: 2.5rem;
+
+  /* text-align-last doen't have support for Safari and IOS */
+  text-align-last: center;
+}
+
+.Volume {
+  display: flex;
+  position: relative;
+  width: fit-content;
+}
+
+.Volume input[type=range].VolumeRange {
+  position: absolute;
+  display: none;
+
+  margin: 0;
+  padding: 0.8rem 0.3rem;
+  border-radius: 0.5rem;
+  transform: rotate(-90deg);
+  transform-origin: top left;
+  z-index: 10;
+
+  background-color: var(--colors-white);
+  border: 1px solid var(--colors-primary);
+}
+
+.TogglePlay {
+  padding: 0.5rem;
+}
+
+.Volume input[type=range].VolumeRange:hover,
+.Volume input[type=range].VolumeRange:focus,
+.TogglePlay:focus + input[type=range].VolumeRange,
+.TogglePlay:hover + input[type=range].VolumeRange {
+  display: initial;
+  width: 14rem;
+}
