@@ -39,6 +39,7 @@ const Player = ({
   title,
   currentTime,
   duration,
+  minDuration,
   loading,
   src,
   setRef,
@@ -68,6 +69,7 @@ const Player = ({
       <Title title={title} />
 
       <ProgressBar
+        min={minDuration}
         value={currentTime}
         max={duration}
         handleChange={setCurrentTime}
@@ -98,9 +100,7 @@ const Player = ({
         handleWaiting={handleWaiting}
         handlePlaying={handlePlaying}
         handleLoadedMetadata={handleLoadedMetadata}
-        handleTimeUpdate={({ target }) =>
-          handleTimeUpdate(Number(target.currentTime))
-        }
+        handleTimeUpdate={handleTimeUpdate}
       />
     </div>
   );

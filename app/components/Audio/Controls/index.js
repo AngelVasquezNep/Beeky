@@ -8,6 +8,7 @@ import {
   MuteIcon,
 } from 'components/Icons';
 import Range from 'components/Range';
+import { Fragment } from 'react';
 
 import styles from './styles.module.css';
 
@@ -88,6 +89,33 @@ const ChangeCurrentTimeButton = ({ offset, currentTime, setCurrentTime }) => {
   );
 };
 
+export const MainControl = ({
+  currentTime,
+  setCurrentTime,
+  isPlaying,
+  onTogglePlay,
+}) => (
+  <Fragment>
+    <ChangeCurrentTimeButton
+      offset={-10}
+      currentTime={currentTime}
+      setCurrentTime={setCurrentTime}
+    />
+
+    <TogglePlay isPlaying={isPlaying} onTogglePlay={onTogglePlay} />
+
+    <ChangeCurrentTimeButton
+      offset={10}
+      currentTime={currentTime}
+      setCurrentTime={setCurrentTime}
+    />
+  </Fragment>
+);
+
+export const ControlsContainer = ({ children }) => (
+  <div className={styles.Controls}>{children}</div>
+);
+
 const Controls = ({
   muted,
   isPlaying,
@@ -100,7 +128,7 @@ const Controls = ({
   setCurrentTime,
   handleVolumeChanges,
 }) => (
-  <div className={styles.Controls}>
+  <ControlsContainer>
     <Volume
       muted={muted}
       volume={volume}
@@ -108,24 +136,18 @@ const Controls = ({
       handleVolumeChanges={handleVolumeChanges}
     />
 
-    <ChangeCurrentTimeButton
-      offset={-10}
+    <MainControl
       currentTime={currentTime}
       setCurrentTime={setCurrentTime}
-    />
-    <TogglePlay isPlaying={isPlaying} onTogglePlay={onTogglePlay} />
-
-    <ChangeCurrentTimeButton
-      offset={10}
-      currentTime={currentTime}
-      setCurrentTime={setCurrentTime}
+      isPlaying={isPlaying}
+      onTogglePlay={onTogglePlay}
     />
 
     <PlaybackRate
       playbackRate={playbackRate}
       handlePlaybackRageChanges={handlePlaybackRageChanges}
     />
-  </div>
+  </ControlsContainer>
 );
 
 export default Controls;

@@ -1,8 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 
-import { AudioPlayer } from 'components';
-
 const INITIAL_PLAYER_STATE = {
+  minDuration: 0,
   duration: 0,
   currentTime: 0,
   playbackRate: 1,
@@ -32,20 +31,32 @@ const calculareAudioBuffered = (audioBuffered) =>
     end: audioBuffered.end(i),
   }));
 
-const PlayerContainer = ({ src, cover, title }) => {
+const PlayerContainer = ({
+  src,
+  cover,
+  title,
+  initialValues,
+  AudioPlayerComponent,
+}) => {
   const audioRef = useRef(null);
   const [audio, setAudio] = useState(null);
-  const [audioInfo, setAudioInfo] = useState(INITIAL_PLAYER_STATE);
+  const [audioInfo, setAudioInfo] = useState({
+    ...INITIAL_PLAYER_STATE,
+    ...initialValues,
+  });
+  const [audioBuffered, setAudioBuffered] = useState([]);
   const [isPlaying, setIsPlaying] = useState(false);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const audio = audioRef.current;
+    audio.currentTime = initialValues?.currentTime ?? audio.currentTime ?? 0;
+
     setAudio(audio);
     setLoading(false);
 
     updateAudioInfo({
-      duration: audio.duration || 0,
+      duration: initialValues?.duration ?? audio.duration ?? 0,
     });
   }, [audioRef]);
 
@@ -65,19 +76,21 @@ const PlayerContainer = ({ src, cover, title }) => {
       audio.volume = audioInfo.volume;
       audio.playbackRate = audioInfo.playbackRate;
     }
-  }, [audioInfo.volume, audioInfo.playbackRate]);
+  }, [audio, audioInfo.volume, audioInfo.playbackRate]);
 
   const updateAudioInfo = (newInfo) => setAudioInfo(mergeAudioInfo(newInfo));
 
-  const handleLoadedMetadata = ({ target }) => {
+  const handleLoadedMetadata = ({ duration }) => {
     setLoading(false);
-    setAudioInfo(mergeAudioInfo({ duration: target.duration }));
+    setAudioInfo(
+      mergeAudioInfo({ duration: initialValues?.duration ?? duration }),
+    );
   };
 
-  const handleProgress = ({ target }) => {
+  const handleProgress = (buffered) => {
     // TODO create a buffer progress bar
-    const buffered = calculareAudioBuffered(target.buffered);
-    console.log({ buffered });
+    const audioBuffered = calculareAudioBuffered(buffered);
+    setAudioBuffered(audioBuffered);
   };
 
   const handleTimeUpdate = (currentTime) => {
@@ -106,7 +119,10 @@ const PlayerContainer = ({ src, cover, title }) => {
 
   const handleSetCurrentTime = (currentTime) => {
     audio.currentTime = currentTime;
+    updateAudioInfo({ currentTime });
   };
+
+  const AudioPlayer = AudioPlayerComponent;
 
   return (
     <AudioPlayer
@@ -118,6 +134,7 @@ const PlayerContainer = ({ src, cover, title }) => {
       isPlaying={isPlaying}
       play={isPlaying}
       setRef={audioRef}
+      audioBuffered={audioBuffered}
       handleLoadedMetadata={handleLoadedMetadata}
       onTogglePlay={() => setIsPlaying((isPlaying) => !isPlaying)}
       handleSeeking={() => setLoading(true)}
@@ -133,6 +150,10 @@ const PlayerContainer = ({ src, cover, title }) => {
       setCurrentTime={handleSetCurrentTime}
     />
   );
+};
+
+PlayerContainer.defaultProps = {
+  initialValues: {},
 };
 
 export default PlayerContainer;

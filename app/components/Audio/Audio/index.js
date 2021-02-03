@@ -18,14 +18,18 @@ const Audio = ({
       play={play.toString()}
       ref={setRef}
       controls={controls}
-      onLoadedMetadata={handleLoadedMetadata}
+      onLoadedMetadata={({ target }) =>
+        handleLoadedMetadata({ duration: target.duration })
+      }
       onSeeking={handleSeeking}
       onSeeked={handleSeeked}
       onLoadedData={handleLoadedData}
       onWaiting={handleWaiting}
       onPlaying={handlePlaying}
-      onTimeUpdate={handleTimeUpdate}
-      onProgress={handleProgress}
+      onTimeUpdate={({ target }) =>
+        handleTimeUpdate(Number(target.currentTime))
+      }
+      onProgress={({ target }) => handleProgress(target.buffered)}
     />
   );
 };

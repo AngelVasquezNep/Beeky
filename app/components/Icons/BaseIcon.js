@@ -37,7 +37,7 @@ BaseIcon.defaultProps = {
 };
 
 BaseIcon.propTypes = {
-  size: PropTypes.oneOf(['small', 'normal', 'big']),
+  size: PropTypes.oneOf(['tiny', 'small', 'normal', 'big']),
 };
 
 export default BaseIcon;
