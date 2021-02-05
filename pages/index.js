@@ -16,11 +16,9 @@ function Home() {
         src="http://listen.vo.llnwd.net/g3/prvw/3/2/6/0/4/2270840623.mp3"
         AudioPlayerComponent={AudioClip}
         initialValues={{
-          // minDuration: 0,
-          // currentTime: 0,
-          // duration: 2000,
-          // volume: 0,
-          // muted: true,
+          from: 10,
+          to: 21,
+          muted: true,
         }}
       />
     </div>

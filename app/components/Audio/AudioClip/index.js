@@ -6,8 +6,8 @@ import styles from './styles.module.css';
 
 const AudioClip = ({
   currentTime,
-  duration,
-  minDuration,
+  to,
+  from,
   src,
   setRef,
   play,
@@ -26,9 +26,9 @@ const AudioClip = ({
   return (
     <div className={styles.AudioClip}>
       <ProgressBar
-        min={minDuration}
+        min={from}
         value={currentTime}
-        max={duration}
+        max={to}
         handleChange={setCurrentTime}
       />
 

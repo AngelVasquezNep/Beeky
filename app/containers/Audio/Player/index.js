@@ -2,10 +2,12 @@ import { useEffect, useRef, useState } from 'react';
 import PropTypes from 'prop-types';
 
 import {
+  getLastMinute,
   calculateInialValues,
   mergeAudioInfo,
   isEnded,
   calculareAudioBuffered,
+  getRightCurrentTime,
 } from './utils';
 
 const INITIAL_PLAYER_STATE = {
@@ -44,7 +46,8 @@ const PlayerContainer = ({
     setLoading(false);
 
     updateAudioInfo({
-      duration: initialValues?.duration ?? audio.duration ?? 0,
+      duration: audio.duration ?? 0,
+      to: getLastMinute(initialValues.to, audio.duration),
     });
   }, [audioRef]);
 
@@ -71,7 +74,10 @@ const PlayerContainer = ({
   const handleLoadedMetadata = ({ duration }) => {
     setLoading(false);
     setAudioInfo(
-      mergeAudioInfo({ duration: initialValues?.duration ?? duration }),
+      mergeAudioInfo({
+        duration: duration ?? 0,
+        to: getLastMinute(initialValues.to, duration),
+      }),
     );
   };
 
@@ -82,11 +88,11 @@ const PlayerContainer = ({
   };
 
   const handleTimeUpdate = (currentTime) => {
-    updateAudioInfo({ currentTime });
-
-    if (isEnded(audio)) {
+    if (isEnded({ ...audioInfo, currentTime })) {
       setIsPlaying(false);
-      updateAudioInfo({ currentTime: 0 });
+      updateAudioInfo({ currentTime: audioInfo.from });
+    } else {
+      updateAudioInfo({ currentTime });
     }
   };
 
@@ -106,8 +112,10 @@ const PlayerContainer = ({
   };
 
   const handleSetCurrentTime = (currentTime) => {
-    audio.currentTime = currentTime;
-    updateAudioInfo({ currentTime });
+    const rightCurrentTime = getRightCurrentTime(audioInfo, currentTime);
+
+    audio.currentTime = rightCurrentTime;
+    updateAudioInfo({ currentTime: rightCurrentTime });
   };
 
   const AudioPlayer = AudioPlayerComponent;
@@ -152,7 +160,7 @@ PlayerContainer.propTypes = {
     playbackRate: PropTypes.number,
     volume: PropTypes.number, // From 0 to 1
     muted: PropTypes.bool,
-  })
-}
+  }),
+};
 
 export default PlayerContainer;

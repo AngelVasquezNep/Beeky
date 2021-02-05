@@ -38,8 +38,8 @@ const Player = ({
   cover,
   title,
   currentTime,
-  duration,
-  minDuration,
+  to,
+  from,
   loading,
   src,
   setRef,
@@ -69,9 +69,9 @@ const Player = ({
       <Title title={title} />
 
       <ProgressBar
-        min={minDuration}
+        min={from}
         value={currentTime}
-        max={duration}
+        max={to}
         handleChange={setCurrentTime}
       />
 

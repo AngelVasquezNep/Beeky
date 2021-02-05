@@ -5,10 +5,15 @@ import Range from 'components/Range';
 
 import styles from './styles.module.css';
 
-const getOffset = ({ value, min = 0, max }) =>
-  `${((value - min) / (max - min)) * 100}%`;
+const getOffset = ({ value, min = 0, max = 0 }) => {
+  if (value <= 0) {
+    return 0
+  }
 
-const ProgressBar = ({ value, min = 0, max, handleChange }) => {
+  return `${((value - min) / (max - min)) * 100}%`;
+}
+
+const ProgressBar = ({ value, min = 0, max = 0, handleChange }) => {
   return (
     <div className={styles['ProgressBar']}>
       <Range
