@@ -1,56 +1,44 @@
 import { useEffect, useRef, useState } from 'react';
+import PropTypes from 'prop-types';
+
+import {
+  calculateInialValues,
+  mergeAudioInfo,
+  isEnded,
+  calculareAudioBuffered,
+} from './utils';
 
 const INITIAL_PLAYER_STATE = {
-  minDuration: 0,
   duration: 0,
   currentTime: 0,
   playbackRate: 1,
   volume: 0.5,
-  lastVolume: 0.5,
   muted: false,
 };
-
-const mergeAudioInfo = (newInfo) => (currentAudioInfo) => ({
-  ...currentAudioInfo,
-  ...newInfo,
-});
-
-const isEnded = (audio) => {
-  const { duration, currentTime } = audio;
-
-  return currentTime >= duration;
-};
-
-/**
- * calculareAudioBuffered
- * @param {TimeRanges} - Use like: audio.buffered
- */
-const calculareAudioBuffered = (audioBuffered) =>
-  Array.from(audioBuffered, (_, i) => ({
-    start: audioBuffered.start(i),
-    end: audioBuffered.end(i),
-  }));
 
 const PlayerContainer = ({
   src,
   cover,
   title,
+
   initialValues,
   AudioPlayerComponent,
 }) => {
   const audioRef = useRef(null);
   const [audio, setAudio] = useState(null);
-  const [audioInfo, setAudioInfo] = useState({
-    ...INITIAL_PLAYER_STATE,
-    ...initialValues,
-  });
+  const [audioInfo, setAudioInfo] = useState(() =>
+    calculateInialValues({
+      ...INITIAL_PLAYER_STATE,
+      ...initialValues,
+    }),
+  );
   const [audioBuffered, setAudioBuffered] = useState([]);
   const [isPlaying, setIsPlaying] = useState(false);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const audio = audioRef.current;
-    audio.currentTime = initialValues?.currentTime ?? audio.currentTime ?? 0;
+    audio.currentTime = initialValues?.from ?? audio.currentTime ?? 0;
 
     setAudio(audio);
     setLoading(false);
@@ -155,5 +143,16 @@ const PlayerContainer = ({
 PlayerContainer.defaultProps = {
   initialValues: {},
 };
+
+PlayerContainer.propTypes = {
+  initialValues: PropTypes.shape({
+    from: PropTypes.number, // Minute from the audio should begin
+    to: PropTypes.number, // The last minute tha the audio should plays
+    currentTime: PropTypes.number, // Which minute should starts to play
+    playbackRate: PropTypes.number,
+    volume: PropTypes.number, // From 0 to 1
+    muted: PropTypes.bool,
+  })
+}
 
 export default PlayerContainer;
