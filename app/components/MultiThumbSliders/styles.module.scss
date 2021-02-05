@@ -1,0 +1,88 @@
+$w: 20em;
+$h: 2rem;
+
+@mixin track() {
+  width: 100%; height: 100%;
+  background: none /* get rid of Firefox track background */
+}
+
+@mixin thumb() {
+  border: none; /* get rid of Firefox thumb border */
+  width: $h;
+  height: $h;
+  border-radius: 0; /* get rid of Firefox corner rounding */
+  background: currentcolor;
+  pointer-events: auto;
+  cursor: pointer;
+}
+
+/* fix too small font-size in both Chrome & Firefox */
+.MultiThumbSliders * { font: inherit }
+.MultiThumbSliders {
+  position: relative;
+}
+
+
+$progressBarHeight: 1rem;
+
+.MultiThumbSliders .ProgressBar {
+  position: absolute;
+  bottom: calc(#{$h / 2} - #{$progressBarHeight / 2});
+  left: 0;
+  right: 0;
+  border-bottom: #{$progressBarHeight} solid var(--colors-primary);
+}
+
+.wrap {
+  display: grid;
+  grid-template: repeat(2, max-content) #{$h}/ 1fr 1fr;
+  overflow: hidden;
+  position: relative;
+  margin: 0 auto;
+  width: $w;
+  background: linear-gradient(0deg, var(--colors-primary) $h, transparent 0);
+  background: transparent;
+  font-family: ubuntu mono, consolas, monaco, monospace;
+}
+
+.MultiThumbSliders input[type='range'] {
+
+  &::-webkit-slider-runnable-track, 
+  &::-webkit-slider-thumb, & {
+    -webkit-appearance: none
+  }
+  
+  grid-column: 1/ span 2;
+  grid-row: 3;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  margin: 0;
+  background: none; /* get rid of white Chrome background */
+  color: var(--colors-primary-disabled);
+  height: 10rem;
+  pointer-events: none;
+  outline: none;
+  
+  &::-webkit-slider-runnable-track {
+    @include track
+  }
+  &::-moz-range-track {
+    @include track
+  }
+  
+  &::-webkit-slider-thumb {
+    @include thumb
+  }
+  &::-moz-range-thumb {
+    @include thumb
+  }
+  
+  &:focus {
+    z-index: 2;
+    
+    &, & + output {
+      color: var(--colors-text);
+    }
+  }
+}
