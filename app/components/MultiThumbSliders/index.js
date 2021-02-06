@@ -1,40 +1,29 @@
 import { useState } from 'react';
+
+import { calculateNextHigtValues, calculateNextLowValues } from './utils';
+
 import styles from './styles.module.scss';
 
-const MultiThumbSliders = ({ min = 0, max = 50, minRange = 0 }) => {
+const MultiThumbSliders = ({
+  min = 0,
+  max = 50,
+  minRange = 0,
+}) => {
   const [a, setA] = useState(0);
   const [b, setB] = useState(30);
 
   function handleChangeA(a) {
-    if (a + minRange >= max) {
-      setA(max - minRange);
-      setB(max);
-      return;
-    }
+    const values = calculateNextLowValues({ a, b, minRange, max });
 
-    if (b - a <= minRange) {
-      setA(a);
-      setB(a + minRange);
-      return;
-    }
-
-    setA(a);
+    setA(values.a);
+    setB(values.b);
   }
 
   function handleChangeB(b) {
-    if (b - minRange <= min) {
-      setB(min + minRange);
-      setA(min);
-      return;
-    }
+    const values = calculateNextHigtValues({ a, b, minRange, min });
 
-    if (b - a <= minRange) {
-      setB(b);
-      setA(b - minRange);
-      return;
-    }
-
-    setB(b);
+    setA(values.a);
+    setB(values.b);
   }
 
   return (
