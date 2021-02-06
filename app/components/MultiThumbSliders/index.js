@@ -1,22 +1,27 @@
 import { useState } from 'react';
+import PropTypes from 'prop-types';
 
 import { calculateNextHigtValues, calculateNextLowValues } from './utils';
 
 import styles from './styles.module.scss';
 
 const MultiThumbSliders = ({
-  min = 0,
-  max = 50,
-  minRange = 0,
+  min,
+  max,
+  from,
+  to,
+  minRange,
+  handleChange,
 }) => {
-  const [a, setA] = useState(0);
-  const [b, setB] = useState(30);
+  const [a, setA] = useState(from);
+  const [b, setB] = useState(to);
 
   function handleChangeA(a) {
     const values = calculateNextLowValues({ a, b, minRange, max });
 
     setA(values.a);
     setB(values.b);
+    handleChange({ from: values.a, to: values.b });
   }
 
   function handleChangeB(b) {
@@ -24,6 +29,7 @@ const MultiThumbSliders = ({
 
     setA(values.a);
     setB(values.b);
+    handleChange({ from: values.a, to: values.b });
   }
 
   return (
@@ -48,6 +54,24 @@ const MultiThumbSliders = ({
       </div>
     </div>
   );
+};
+
+MultiThumbSliders.defaultProps = {
+  min: 0,
+  max: 50,
+  from: 0,
+  to: 25,
+  minRange: 0,
+  handleChange: () => {},
+}
+
+MultiThumbSliders.propTypes = {
+  min: PropTypes.number, // Min range value
+  max: PropTypes.number, // Max range value
+  from: PropTypes.number, // Where low value is started
+  to: PropTypes.number, // Where higt value is started
+  minRange: PropTypes.number, // Min space between from and to value
+  handleChange: PropTypes.func, // ({ from, to }) => {}
 };
 
 export default MultiThumbSliders;
