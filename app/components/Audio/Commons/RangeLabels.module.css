@@ -1,4 +1,5 @@
-.RangeLabelCurrentValue {
+.RangeLabelCurrentValue,
+.RangeCurrentValue {
   position: absolute;
   color: var(--colors-primary);
   font-size: var(--font-size-small);
@@ -21,4 +22,13 @@
 
 .RangeLabelMinValue {
   left: 0;
+}
+
+.RangeCurrentValue {
+  width: 0.5rem;
+  height: 0.5rem;
+  background-color: var(--colors-primary-disabled);
+  top: 0.3rem;
+  border-radius: 50%;
+  z-index: 1;
 }

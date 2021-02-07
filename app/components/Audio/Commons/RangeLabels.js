@@ -25,3 +25,10 @@ export const RangeLabelMinValue = ({ value, className }) => (
     {toHHMMSS(value)}
   </span>
 );
+
+export const RangeCurrentValue = ({ value, min, max, className }) => (
+  <span
+    style={{ left: `${((value - min) / (max - min)) * 100}%` }}
+    className={classnames(styles.RangeCurrentValue, className)}
+  />
+);

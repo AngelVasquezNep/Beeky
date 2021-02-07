@@ -1,8 +1,7 @@
 import { MultiThumbSliders } from 'components';
 
-import { useEffect, useState } from 'react';
-
 import {
+  RangeCurrentValue,
   RangeLabelCurrentValue,
   RangeLabelMaxValue,
   RangeLabelMinValue,
@@ -10,17 +9,17 @@ import {
 
 import styles from './styles.module.css';
 
-const MultiThumbSlidersAudio = ({
-  min,
-  max,
-  from,
-  to,
-  ...rest
-}) => {
+const MultiThumbSlidersAudio = ({ currentTime, min, max, from, to, ...rest }) => {
   return (
     <div className={styles.MultiThumbSlidersAudio}>
       <RangeLabelMinValue value={min} className={styles.label} />
       <RangeLabelMaxValue value={max} className={styles.label} />
+      <RangeCurrentValue
+        min={min}
+        max={max}
+        value={currentTime}
+        className={styles.RangeCurrentValue}
+      />
       <RangeLabelCurrentValue
         value={from}
         min={min}
@@ -34,13 +33,7 @@ const MultiThumbSlidersAudio = ({
         className={styles.HigtOffset}
       />
 
-      <MultiThumbSliders
-        from={from}
-        to={to}
-        min={min}
-        max={max}
-        {...rest}
-      />
+      <MultiThumbSliders from={from} to={to} min={min} max={max} {...rest} />
     </div>
   );
 };

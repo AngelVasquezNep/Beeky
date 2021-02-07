@@ -35,6 +35,7 @@ const AudioClip = ({
         max={max}
         from={from}
         to={to}
+        currentTime={currentTime}
         handleChangeFrom={updateFromValue}
         handleChangeTo={updateToValue}
       />
