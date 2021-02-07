@@ -19,12 +19,9 @@ const INITIAL_PLAYER_STATE = {
 };
 
 const PlayerContainer = ({
-  src,
-  cover,
-  title,
-
   initialValues,
   AudioPlayerComponent,
+  ...rest
 }) => {
   const audioRef = useRef(null);
   const [audio, setAudio] = useState(null);
@@ -146,10 +143,8 @@ const PlayerContainer = ({
 
   return (
     <AudioPlayer
+      {...rest}
       {...audioInfo}
-      src={src}
-      cover={cover}
-      title={title}
       loading={loading}
       isPlaying={isPlaying}
       play={isPlaying}
