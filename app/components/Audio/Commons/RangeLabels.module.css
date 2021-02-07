@@ -1,0 +1,24 @@
+.RangeLabelCurrentValue {
+  position: absolute;
+  color: var(--colors-primary);
+  font-size: var(--font-size-small);
+  background-color: var(--colors-white);
+  width: fit-content;
+  z-index: 5;
+}
+
+.RangeLabelMaxValue,
+.RangeLabelMinValue {
+  position: absolute;
+  right: 0;
+  color: var(--colors-light-gray);
+  font-size: var(--font-size-tiny);
+}
+
+.RangeLabelMaxValue {
+  right: 0;
+}
+
+.RangeLabelMinValue {
+  left: 0;
+}
