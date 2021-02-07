@@ -1,4 +1,3 @@
-import { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 
 import { calculateNextHigtValues, calculateNextLowValues } from './utils';
@@ -16,22 +15,40 @@ const MultiThumbSliders = ({
   handleChangeTo,
 }) => {
   function handleChangeA(from) {
+    const values = calculateNextLowValues({ from, to, minRange, max });
+
     if (handleChange) {
-      handleChange(calculateNextLowValues({ from, to, minRange, max }));
+      handleChange(values);
+      return;
+    }
+
+    if (handleChangeFrom && handleChangeTo && values.to !== to) {
+      handleChangeFrom(values.from);
+      handleChangeTo(values.to);
+      return;
     }
 
     if (handleChangeFrom) {
-      handleChangeFrom(from);
+      handleChangeFrom(values.from);
     }
   }
 
   function handleChangeB(to) {
+    const values = calculateNextHigtValues({ from, to, minRange, min });
+
     if (handleChange) {
-      handleChange(calculateNextHigtValues({ from, to, minRange, min }));
+      handleChange(values);
+      return;
+    }
+
+    if (handleChangeTo && handleChangeFrom && values.from !== from) {
+      handleChangeTo(values.to);
+      handleChangeFrom(values.from);
+      return;
     }
 
     if (handleChangeTo) {
-      handleChangeTo(to);
+      handleChangeTo(values.to);
     }
   }
 
