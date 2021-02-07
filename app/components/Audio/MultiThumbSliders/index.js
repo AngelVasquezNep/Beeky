@@ -45,7 +45,7 @@ const MultiThumbSlidersAudio = ({
         value={higtOffset}
         min={min}
         max={max}
-        className={styles.label}
+        className={styles.HigtOffset}
       />
 
       <MultiThumbSliders
