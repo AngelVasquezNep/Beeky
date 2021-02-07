@@ -15,6 +15,7 @@ const AudioClip = ({
   play,
   isPlaying,
   setCurrentTime,
+  loading,
   updateFromValue,
   updateToValue,
   handleProgress,
@@ -40,6 +41,7 @@ const AudioClip = ({
 
       <ControlsContainer>
         <MainControl
+          loading={loading}
           currentTime={currentTime}
           setCurrentTime={setCurrentTime}
           isPlaying={isPlaying}

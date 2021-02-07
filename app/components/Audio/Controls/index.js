@@ -12,7 +12,7 @@ import { Fragment } from 'react';
 
 import styles from './styles.module.css';
 
-const TogglePlay = ({ onTogglePlay, isPlaying }) => (
+const TogglePlay = ({ onTogglePlay, isPlaying, loading }) => (
   <button
     className={classnames(
       styles.Control,
@@ -21,6 +21,7 @@ const TogglePlay = ({ onTogglePlay, isPlaying }) => (
     )}
     onClick={onTogglePlay}
   >
+    <div className={classnames({ [styles.Loading]: loading })}></div>
     {isPlaying ? <PauseIcon /> : <PlayIcon />}{' '}
   </button>
 );
@@ -90,6 +91,7 @@ const ChangeCurrentTimeButton = ({ offset, currentTime, setCurrentTime }) => {
 };
 
 export const MainControl = ({
+  loading,
   currentTime,
   setCurrentTime,
   isPlaying,
@@ -102,7 +104,11 @@ export const MainControl = ({
       setCurrentTime={setCurrentTime}
     />
 
-    <TogglePlay isPlaying={isPlaying} onTogglePlay={onTogglePlay} />
+    <TogglePlay
+      isPlaying={isPlaying}
+      onTogglePlay={onTogglePlay}
+      loading={loading}
+    />
 
     <ChangeCurrentTimeButton
       offset={10}

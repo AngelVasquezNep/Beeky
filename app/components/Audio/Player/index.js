@@ -78,6 +78,7 @@ const Player = ({
       <Controls
         muted={muted}
         volume={volume}
+        loading={loading}
         isPlaying={isPlaying}
         onTogglePlay={onTogglePlay}
         playbackRate={playbackRate}
