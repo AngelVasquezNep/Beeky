@@ -4,20 +4,10 @@
 }
 
 .ProgressBar-value {
-  position: absolute;
   top: 70%;
-  color: var(--colors-primary);
-  font-size: var(--font-size-small);
-  background-color: var(--colors-white);
-  width: fit-content;
-  z-index: 5;
 }
 
 
 .ProgressBar-max {
-  position: absolute;
   top: 70%;
-  right: 0;
-  color: var(--colors-light-gray);
-  font-size: var(--font-size-tiny);
 }

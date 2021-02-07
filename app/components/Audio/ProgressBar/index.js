@@ -1,17 +1,12 @@
 import PropTypes from 'prop-types';
-import { toHHMMSS } from 'utils/date';
 
 import Range from 'components/Range';
+import {
+  RangeLabelCurrentValue,
+  RangeLabelMaxValue,
+} from 'components/Audio/Commons/RangeLabels';
 
 import styles from './styles.module.css';
-
-const getOffset = ({ value, min = 0, max = 0 }) => {
-  if (value <= 0) {
-    return 0
-  }
-
-  return `${((value - min) / (max - min)) * 100}%`;
-}
 
 const ProgressBar = ({ value, min = 0, max = 0, handleChange }) => {
   return (
@@ -23,20 +18,20 @@ const ProgressBar = ({ value, min = 0, max = 0, handleChange }) => {
         onChange={({ target }) => handleChange(Number(target.value))}
       />
 
-      <span
-        style={{ left: getOffset({ value, max, min }) }}
+      <RangeLabelCurrentValue
+        value={value}
+        min={min}
+        max={max}
         className={styles['ProgressBar-value']}
-      >
-        {toHHMMSS(value)}
-      </span>
+      />
 
-      <span className={styles['ProgressBar-max']}>{toHHMMSS(max)}</span>
+      <RangeLabelMaxValue value={max} className={styles['ProgressBar-max']} />
     </div>
   );
 };
 
 ProgressBar.propTypes = {
-  value: PropTypes.number.isRequired,
+  value: PropTypes.number.isRequired, // In seconds
   max: PropTypes.number.isRequired,
   handleChange: PropTypes.func.isRequired,
 };
