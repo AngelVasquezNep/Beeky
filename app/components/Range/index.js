@@ -7,7 +7,7 @@ const Range = ({ className, ...rest }) => (
     type="range"
     min="0"
     max="1"
-    step={0.1}
+    step={0.01}
     {...rest}
   />
 );

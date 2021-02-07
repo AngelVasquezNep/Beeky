@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 
 import { calculateNextHigtValues, calculateNextLowValues } from './utils';
@@ -14,6 +14,10 @@ const MultiThumbSliders = ({
   handleChange,
 }) => {
   const [{ a, b }, setRange] = useState({ a: from, b: to })
+
+  useEffect(() => {
+    setRange({ a: from, b: to });
+  }, [from, to])
 
   function handleChangeA(a) {
     const values = calculateNextLowValues({ a, b, minRange, max });
@@ -38,6 +42,7 @@ const MultiThumbSliders = ({
           type="range"
           min={min}
           max={max}
+          step={0.01}
           onChange={({ target }) => handleChangeA(Number(target.value))}
         />
 
@@ -46,6 +51,7 @@ const MultiThumbSliders = ({
           type="range"
           min={min}
           max={max}
+          step={0.01}
           onChange={({ target }) => handleChangeB(Number(target.value))}
         />
       </div>

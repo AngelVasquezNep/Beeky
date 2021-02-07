@@ -1,6 +1,6 @@
 import Audio from 'components/Audio';
+import { MultiThumbSlidersAudio } from 'components'
 import { ControlsContainer, MainControl } from 'components/Audio/Controls';
-import ProgressBar from 'components/Audio/ProgressBar';
 
 import styles from './styles.module.css';
 
@@ -25,11 +25,14 @@ const AudioClip = ({
 }) => {
   return (
     <div className={styles.AudioClip}>
-      <ProgressBar
+      <MultiThumbSlidersAudio
         min={from}
-        value={currentTime}
         max={to}
-        handleChange={setCurrentTime}
+        from={from}
+        to={to}
+        handleChange={({ from }) => {
+          setCurrentTime(from)
+        }}
       />
 
       <ControlsContainer>

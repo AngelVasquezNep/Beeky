@@ -1,6 +1,6 @@
 import { MultiThumbSliders } from 'components';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import {
   RangeLabelCurrentValue,
@@ -22,6 +22,10 @@ const MultiThumbSlidersAudio = ({
     lowOffset: from,
     higtOffset: to,
   });
+
+  useEffect(() => {
+    setOffset({ lowOffset: from, higtOffset: to });
+  }, [from, to]);
 
   function handleRangeChange({ from, to, ...rest }) {
     setOffset({ lowOffset: from, higtOffset: to });
