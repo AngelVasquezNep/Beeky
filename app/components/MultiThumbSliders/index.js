@@ -13,22 +13,19 @@ const MultiThumbSliders = ({
   minRange,
   handleChange,
 }) => {
-  const [a, setA] = useState(from);
-  const [b, setB] = useState(to);
+  const [{ a, b }, setRange] = useState({ a: from, b: to })
 
   function handleChangeA(a) {
     const values = calculateNextLowValues({ a, b, minRange, max });
 
-    setA(values.a);
-    setB(values.b);
+    setRange(values)
     handleChange({ from: values.a, to: values.b });
   }
 
   function handleChangeB(b) {
     const values = calculateNextHigtValues({ a, b, minRange, min });
 
-    setA(values.a);
-    setB(values.b);
+    setRange(values)
     handleChange({ from: values.a, to: values.b });
   }
 
