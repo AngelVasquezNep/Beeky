@@ -1,5 +1,5 @@
 import Audio from 'components/Audio';
-import { MultiThumbSlidersAudio } from 'components'
+import { MultiThumbSlidersAudio } from 'components';
 import { ControlsContainer, MainControl } from 'components/Audio/Controls';
 
 import styles from './styles.module.css';
@@ -8,11 +8,15 @@ const AudioClip = ({
   currentTime,
   to,
   from,
+  min,
+  max,
   src,
   setRef,
   play,
   isPlaying,
   setCurrentTime,
+  updateFromValue,
+  updateToValue,
   handleProgress,
   onTogglePlay,
   handleTimeUpdate,
@@ -26,13 +30,12 @@ const AudioClip = ({
   return (
     <div className={styles.AudioClip}>
       <MultiThumbSlidersAudio
-        min={from}
-        max={to}
+        min={min}
+        max={max}
         from={from}
         to={to}
-        handleChange={({ from }) => {
-          setCurrentTime(from)
-        }}
+        handleChangeFrom={updateFromValue}
+        handleChangeTo={updateToValue}
       />
 
       <ControlsContainer>

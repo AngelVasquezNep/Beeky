@@ -1,38 +1,38 @@
-export const calculateNextLowValues = ({ a, b, minRange, max }) => {
-  if (a + minRange >= max) {
+export const calculateNextLowValues = ({ from, to, minRange, max }) => {
+  if (from + minRange >= max) {
     return {
-      a: max - minRange,
-      b: max,
+      from: max - minRange,
+      to: max,
     };
   }
 
-  if (b - a <= minRange) {
+  if (to - from <= minRange) {
     return {
-      a,
-      b: a + minRange,
+      from,
+      to: from + minRange,
     };
   }
 
-  return { a, b };
+  return { from, to };
 };
 
-export const calculateNextHigtValues = ({ a, b, minRange, min }) => {
-  if (b - minRange <= min) {
+export const calculateNextHigtValues = ({ from, to, minRange, min }) => {
+  if (to - minRange <= min) {
     return {
-      a: min,
-      b: min + minRange,
+      from: min,
+      to: min + minRange,
     };
   }
 
-  if (b - a <= minRange) {
+  if (to - from <= minRange) {
     return {
-      b,
-      a: b - minRange,
+      to,
+      from: to - minRange,
     };
   }
 
   return {
-    b,
-    a,
+    to,
+    from,
   };
 };

@@ -12,25 +12,27 @@ const MultiThumbSliders = ({
   to,
   minRange,
   handleChange,
+  handleChangeFrom,
+  handleChangeTo,
 }) => {
-  const [{ a, b }, setRange] = useState({ a: from, b: to })
+  function handleChangeA(from) {
+    if (handleChange) {
+      handleChange(calculateNextLowValues({ from, to, minRange, max }));
+    }
 
-  useEffect(() => {
-    setRange({ a: from, b: to });
-  }, [from, to])
-
-  function handleChangeA(a) {
-    const values = calculateNextLowValues({ a, b, minRange, max });
-
-    setRange(values)
-    handleChange({ from: values.a, to: values.b });
+    if (handleChangeFrom) {
+      handleChangeFrom(from);
+    }
   }
 
-  function handleChangeB(b) {
-    const values = calculateNextHigtValues({ a, b, minRange, min });
+  function handleChangeB(to) {
+    if (handleChange) {
+      handleChange(calculateNextHigtValues({ from, to, minRange, min }));
+    }
 
-    setRange(values)
-    handleChange({ from: values.a, to: values.b });
+    if (handleChangeTo) {
+      handleChangeTo(to);
+    }
   }
 
   return (
@@ -38,7 +40,7 @@ const MultiThumbSliders = ({
       <div className={styles.ProgressBar}></div>
       <div className={styles['wrap']} role="group" aria-labelledby="multi-lbl">
         <input
-          value={a}
+          value={from}
           type="range"
           min={min}
           max={max}
@@ -47,7 +49,7 @@ const MultiThumbSliders = ({
         />
 
         <input
-          value={b}
+          value={to}
           type="range"
           min={min}
           max={max}
@@ -65,8 +67,7 @@ MultiThumbSliders.defaultProps = {
   from: 0,
   to: 25,
   minRange: 0,
-  handleChange: () => {},
-}
+};
 
 MultiThumbSliders.propTypes = {
   min: PropTypes.number, // Min range value
@@ -75,6 +76,8 @@ MultiThumbSliders.propTypes = {
   to: PropTypes.number, // Where higt value is started
   minRange: PropTypes.number, // Min space between from and to value
   handleChange: PropTypes.func, // ({ from, to }) => {}
+  handleChangeFrom: PropTypes.func,
+  handleChangeTo: PropTypes.func,
 };
 
 export default MultiThumbSliders;

@@ -2,12 +2,15 @@ export const calculateInialValues = (initialValues) => {
   const { volume, muted } = initialValues;
 
   return {
-    to: 0,
     from: 0,
+    to: 0,
     ...initialValues,
+
+    min: initialValues.min ?? initialValues.from ?? 0,
+    max: initialValues.max ?? initialValues.to ?? 0,
     lastVolume: volume,
     volume: muted ? 0 : volume,
-    muted: volume === 0 ? true : muted,
+    muted: volume === 0 || muted,
   };
 };
 

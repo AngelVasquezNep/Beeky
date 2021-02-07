@@ -15,38 +15,20 @@ const MultiThumbSlidersAudio = ({
   max,
   from,
   to,
-  handleChange,
   ...rest
 }) => {
-  const [{ lowOffset, higtOffset }, setOffset] = useState({
-    lowOffset: from,
-    higtOffset: to,
-  });
-
-  useEffect(() => {
-    setOffset({ lowOffset: from, higtOffset: to });
-  }, [from, to]);
-
-  function handleRangeChange({ from, to, ...rest }) {
-    setOffset({ lowOffset: from, higtOffset: to });
-
-    if (handleChange) {
-      handleChange({ from, to, ...rest });
-    }
-  }
-
   return (
     <div className={styles.MultiThumbSlidersAudio}>
       <RangeLabelMinValue value={min} className={styles.label} />
       <RangeLabelMaxValue value={max} className={styles.label} />
       <RangeLabelCurrentValue
-        value={lowOffset}
+        value={from}
         min={min}
         max={max}
         className={styles.label}
       />
       <RangeLabelCurrentValue
-        value={higtOffset}
+        value={to}
         min={min}
         max={max}
         className={styles.HigtOffset}
@@ -57,7 +39,6 @@ const MultiThumbSlidersAudio = ({
         to={to}
         min={min}
         max={max}
-        handleChange={handleRangeChange}
         {...rest}
       />
     </div>

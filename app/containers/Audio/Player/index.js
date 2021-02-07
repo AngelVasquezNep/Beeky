@@ -40,13 +40,17 @@ const PlayerContainer = ({
 
   useEffect(() => {
     const audio = audioRef.current;
-    audio.currentTime = initialValues?.from ?? audio.currentTime ?? 0;
+    /* See the Readme.md */
+    const currentTime = initialValues?.from ?? audio.currentTime ?? 0;
+    setAudioCurrentTime(currentTime);
 
     setAudio(audio);
     setLoading(false);
 
     updateAudioInfo({
+      currentTime,
       duration: audio.duration ?? 0,
+      max: initialValues?.max ?? initialValues.to ?? audio.duration ?? 0,
       to: getLastMinute(initialValues.to, audio.duration),
     });
   }, [audioRef]);
@@ -54,6 +58,7 @@ const PlayerContainer = ({
   useEffect(() => {
     if (audio) {
       if (isPlaying) {
+        setAudioCurrentTime(audioInfo.currentTime);
         audio.play();
       } else {
         setLoading(false);
@@ -76,6 +81,7 @@ const PlayerContainer = ({
     setAudioInfo(
       mergeAudioInfo({
         duration: duration ?? 0,
+        max: initialValues?.max ?? initialValues.to ?? duration ?? 0,
         to: getLastMinute(initialValues.to, duration),
       }),
     );
@@ -90,8 +96,11 @@ const PlayerContainer = ({
   const handleTimeUpdate = (currentTime) => {
     if (isEnded({ ...audioInfo, currentTime })) {
       setIsPlaying(false);
+      setAudioCurrentTime(audioInfo.from);
       updateAudioInfo({ currentTime: audioInfo.from });
     } else {
+      // Don't set here currentTime at audio reference to prevent 
+      // wrong behavior
       updateAudioInfo({ currentTime });
     }
   };
@@ -111,11 +120,26 @@ const PlayerContainer = ({
     updateAudioInfo({ volume, muted: !audioInfo.muted });
   };
 
+  const setAudioCurrentTime = (currentTime) => {
+    if (audio) {
+      audio.currentTime = currentTime;
+    }
+  };
+
   const handleSetCurrentTime = (currentTime) => {
     const rightCurrentTime = getRightCurrentTime(audioInfo, currentTime);
 
-    audio.currentTime = rightCurrentTime;
+    setAudioCurrentTime(rightCurrentTime);
     updateAudioInfo({ currentTime: rightCurrentTime });
+  };
+
+  const updateFromValue = (from) => {
+    setAudioCurrentTime(from);
+    updateAudioInfo({ from, currentTime: from });
+  };
+
+  const updateToValue = (to) => {
+    updateAudioInfo({ to });
   };
 
   const AudioPlayer = AudioPlayerComponent;
@@ -144,6 +168,8 @@ const PlayerContainer = ({
       handleVolumeChanges={handleVolumeChanges}
       handleToggleMute={handleToggleMute}
       setCurrentTime={handleSetCurrentTime}
+      updateFromValue={updateFromValue}
+      updateToValue={updateToValue}
     />
   );
 };
