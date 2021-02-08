@@ -3,6 +3,10 @@
   padding: 0.5rem;
   border: 1px solid var(--colors-light-gray);
   border-radius: 0.3rem;
+  font-size: var(--font-size-small);
+  font-family: var(--font);
+  max-width: 100%;
+  width: 100%;
 }
 
 .label {
@@ -32,4 +36,8 @@
 
 .InputContainer.vertical .input {
   margin-bottom: 1rem;
+}
+
+.TextArea {
+  min-width: 100%;
 }
