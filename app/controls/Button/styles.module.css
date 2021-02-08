@@ -1,0 +1,75 @@
+.Button {
+  border-radius: 0.3rem;
+  background-color: transparent;
+  transition: all 0.3s;
+  border: 1px solid var(--colors-light-gray);
+  color: var(--colors-light-gray);
+}
+
+.Button:focus,
+.Button:hover {
+  outline: none;
+  border-color: var(--colors-primary);
+  box-shadow: 0 0 2px 1px var(--colors-primary);
+  color: var(--colors-primary);
+}
+
+.Button:hover {
+  cursor: pointer;
+}
+
+.Button.normalSize {
+  padding: 0.5rem;
+}
+.Button.smallSize {
+  padding: 0.3rem;
+}
+.Button.bigSize {
+  padding: 1rem;
+}
+
+.Button.normalStatus {
+  border: 1px solid var(--colors-primary);
+  color: var(--colors-primary);
+}
+.Button.normalStatus:focus,
+.Button.normalStatus:hover {
+  border-color: var(--colors-primary);
+  box-shadow: 0 0 2px 1px var(--colors-primary);
+  color: var(--colors-primary);
+}
+
+.Button.warningStatus {
+  border: 1px solid var(--colors-warning); 
+  color: var(--colors-warning); 
+}
+.Button.warningStatus:focus,
+.Button.warningStatus:hover {
+  border-color: var(--colors-warning);
+  box-shadow: 0 0 2px 1px var(--colors-warning);
+  color: var(--colors-warning);
+}
+
+.Button.dangerStatus {
+  border: 1px solid var(--colors-danger);
+  color: var(--colors-danger);
+}
+.Button.dangerStatus:focus,
+.Button.dangerStatus:hover {
+  border-color: var(--colors-danger);
+  box-shadow: 0 0 2px 1px var(--colors-danger);
+  color: var(--colors-danger);
+}
+
+.Button.disabled {
+  background-color: var(--colors-disabled);
+  border-color: var(--colors-light-gray);
+  color: var(--colors-light-gray);
+}
+.Button.disabled:focus,
+.Button.disabled:hover {
+  cursor: not-allowed;
+  border-color: var(--colors-light-gray);
+  box-shadow: 0 0 2px 1px var(--colors-light-gray);
+  color: var(--colors-light-gray);
+}
