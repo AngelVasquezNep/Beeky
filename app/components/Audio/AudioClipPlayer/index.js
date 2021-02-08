@@ -1,10 +1,14 @@
+import classnames from 'classnames';
+
 import Audio from 'components/Audio';
 import { MultiThumbSlidersAudio } from 'components';
 import { ControlsContainer, MainControl } from 'components/Audio/Controls';
 
 import styles from './styles.module.css';
 
-const AudioClip = ({
+const AudioClipPlayer = ({
+  className,
+
   currentTime,
   to,
   from,
@@ -29,7 +33,7 @@ const AudioClip = ({
   handleLoadedMetadata,
 }) => {
   return (
-    <div className={styles.AudioClip}>
+    <div className={classnames(styles.AudioClipPlayer, className)}>
       <MultiThumbSlidersAudio
         min={min}
         max={max}
@@ -68,8 +72,8 @@ const AudioClip = ({
   );
 };
 
-AudioClip.defaultProps = {
+AudioClipPlayer.defaultProps = {
   title: 'Title',
 };
 
-export default AudioClip;
+export default AudioClipPlayer;
