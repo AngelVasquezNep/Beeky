@@ -8,6 +8,10 @@
       "containers/*": ["./app/containers/*"],
       "containers": ["./app/containers"],
       "utils/*": ["./app/utils/*"],
+      "controls/*": ["./app/controls/*"],
+      "controls": ["./app/controls"],
+      "hooks/*": ["./app/hooks/*"],
+      "hooks": ["./app/hooks"],
       "theme": ["./app/theme"]
     }
   }
