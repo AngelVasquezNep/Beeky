@@ -32,7 +32,13 @@ const Cover = ({ cover, title, loading, ...rest }) => {
   return null;
 };
 
-const Title = ({ title }) => <h2 className={styles.Title}>{title}</h2>;
+const Title = ({ title }) => {
+  if (title) {
+    <h2 className={styles.Title}>{title}</h2>;
+  }
+
+  return null;
+};
 
 const Player = ({
   cover,
