@@ -54,3 +54,17 @@ export const toHHMMSS = (secs) => {
     .filter((v, i) => v !== '00' || i > 0)
     .join(':');
 };
+
+export const dateFormat = (date, options = {}) => {
+  const { locale = 'es-MX', ...restOptions } = options || {};
+
+  const defaultOptions = {
+    dateStyle: 'full',
+    timeStyle: 'short',
+    ...restOptions,
+  };
+
+  const dt = new Intl.DateTimeFormat(locale, defaultOptions);
+
+  return dt.format(new Date(date));
+};
