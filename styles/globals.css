@@ -32,4 +32,7 @@ a {
   /* font sizes */
   --font-size-small: 1rem;
   --font-size-tiny: 0.8rem;
+
+  /* Containers */
+  --container-width: 30rem;
 }
