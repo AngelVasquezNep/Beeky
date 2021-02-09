@@ -3,7 +3,16 @@ import classnames from 'classnames';
 
 import styles from './styles.module.css';
 
-const Button = ({ children, status, size, className, disabled, ...rest }) => {
+const Button = ({
+  children,
+  status,
+  size,
+  type,
+  className,
+  disabled,
+  htmlType,
+  ...rest
+}) => {
   const statusClass = {
     [styles.normalStatus]: status === 'normal',
     [styles.warningStatus]: status === 'warning',
@@ -16,14 +25,26 @@ const Button = ({ children, status, size, className, disabled, ...rest }) => {
     [styles.bigSize]: size === 'big',
   };
 
+  const styleClass = {
+    [styles.normalStyle]: type === 'normal',
+    [styles.textStyle]: type === 'text',
+  };
+
   return (
     <button
-      type="button"
       {...rest}
+      type={htmlType}
       disabled={disabled}
-      className={classnames(styles.Button, className, statusClass, sizeClass, {
-        [styles.disabled]: disabled,
-      })}
+      className={classnames(
+        styles.Button,
+        className,
+        statusClass,
+        sizeClass,
+        styleClass,
+        {
+          [styles.disabled]: disabled,
+        },
+      )}
     >
       {children}
     </button>
@@ -33,11 +54,14 @@ const Button = ({ children, status, size, className, disabled, ...rest }) => {
 Button.defaultProps = {
   size: 'normal',
   status: 'normal',
+  htmlType: 'button'
 };
 
 Button.propTypes = {
+  htmlType: PropTypes.oneOf(['button', 'submit']),
   status: PropTypes.oneOf(['normal', 'warning', 'danger']),
   size: PropTypes.oneOf(['normal', 'small', 'big']),
+  type: PropTypes.oneOf(['normal', 'text']),
 };
 
 export default Button;

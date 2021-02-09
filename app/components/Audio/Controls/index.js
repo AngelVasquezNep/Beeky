@@ -1,4 +1,6 @@
+import { Fragment } from 'react';
 import classnames from 'classnames';
+
 import {
   PlayIcon,
   PauseIcon,
@@ -8,12 +10,13 @@ import {
   MuteIcon,
 } from 'components/Icons';
 import Range from 'components/Range';
-import { Fragment } from 'react';
+import { Button } from 'controls';
 
 import styles from './styles.module.css';
 
 const TogglePlay = ({ onTogglePlay, isPlaying, loading }) => (
-  <button
+  <Button
+    type="text"
     className={classnames(
       styles.Control,
       styles.ControlButton,
@@ -23,7 +26,7 @@ const TogglePlay = ({ onTogglePlay, isPlaying, loading }) => (
   >
     <div className={classnames({ [styles.Loading]: loading })}></div>
     {isPlaying ? <PauseIcon /> : <PlayIcon />}{' '}
-  </button>
+  </Button>
 );
 
 const speedOptions = [
@@ -51,7 +54,8 @@ const PlaybackRate = ({ playbackRate, handlePlaybackRageChanges }) => (
 
 const Volume = ({ volume, muted, handleToggleMute, handleVolumeChanges }) => (
   <div className={styles.Volume}>
-    <button
+    <Button
+      type="text"
       className={classnames(
         styles.Control,
         styles.ControlButton,
@@ -64,7 +68,7 @@ const Volume = ({ volume, muted, handleToggleMute, handleVolumeChanges }) => (
       ) : (
         <VolumeIcon size="tiny" />
       )}
-    </button>
+    </Button>
 
     <Range
       min="0"
@@ -81,12 +85,13 @@ const ChangeCurrentTimeButton = ({ offset, currentTime, setCurrentTime }) => {
   const ArrowIcon = offset > 0 ? ArrowRightIcon : ArrowLeftIcon;
 
   return (
-    <button
+    <Button
+      type="text"
       className={classnames(styles.Control, styles.ControlButton)}
       onClick={() => setCurrentTime(parseInt(currentTime) + offset)}
     >
       <ArrowIcon size="tiny" />
-    </button>
+    </Button>
   );
 };
 

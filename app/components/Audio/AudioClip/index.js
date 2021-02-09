@@ -66,7 +66,7 @@ const AudioClip = ({
         >
           Cancelar
         </Button>
-        <Button type="submit" disabled={title === ''}>
+        <Button htmlType="submit" disabled={title === ''}>
           Guardar
         </Button>
       </form>
