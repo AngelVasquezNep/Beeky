@@ -40,6 +40,8 @@ const Player = ({
   currentTime,
   to,
   from,
+  min,
+  max,
   loading,
   src,
   setRef,
@@ -69,9 +71,9 @@ const Player = ({
       <Title title={title} />
 
       <ProgressBar
-        min={from}
+        min={min}
         value={currentTime}
-        max={to}
+        max={max}
         handleChange={setCurrentTime}
       />
 
