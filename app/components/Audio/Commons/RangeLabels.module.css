@@ -25,10 +25,9 @@
 }
 
 .RangeCurrentValue {
-  width: 0.5rem;
-  height: 0.5rem;
-  background-color: var(--colors-primary-disabled);
-  top: 0.3rem;
-  border-radius: 50%;
+  width: 4px;
+  height: 1.1rem;
+  background-color: var(--colors-primary);
+  top: 0rem;
   z-index: 1;
 }
