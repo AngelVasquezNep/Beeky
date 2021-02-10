@@ -2,11 +2,17 @@ import { ClipPropTypes } from './commonPropTypes';
 
 import { Button } from 'controls';
 
-import styles from './styles.module.css'
+import { DateMessage } from './Commons';
 
-const ClipItem = ({ title, onListen }) => (
+import styles from './styles.module.css';
+
+const ClipItem = ({ title, onListen, createdAt }) => (
   <div className={styles.ClipItem}>
-    <p className={styles.ClipListItemTitle}>{title}</p>
+    <p className={styles.ClipListItemTitle}>
+      <strong>{title}</strong>
+      <br />
+      <DateMessage date={createdAt} />
+    </p>
 
     <Button size="small" onClick={onListen}>
       Ver

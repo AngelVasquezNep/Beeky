@@ -1,7 +1,5 @@
 import { useState } from 'react';
 
-import { dateFormat } from 'utils/date';
-
 import { Button } from 'controls';
 
 import { AudioPlayerContainer } from 'containers';
@@ -9,9 +7,10 @@ import { AudioPlayer, AudioClip } from 'components';
 import { CloseIcon, EditIcon, TrashIcon } from 'components/Icons';
 
 import ClipItem from './ClipItem';
+import { DateMessage } from './Commons';
+import { AudioClipPropTypes } from './commonPropTypes';
 
 import styles from './styles.module.css';
-import { AudioClipPropTypes } from './commonPropTypes';
 
 const CLIP_VIEWS = {
   EDIT: 'EDIT',
@@ -54,8 +53,6 @@ const Title = ({ title }) => <h3>{title}</h3>;
 const Description = ({ description }) =>
   description ? <p>{description}</p> : null;
 
-const DateMessage = ({ date }) => <small>{dateFormat(date)}</small>;
-
 const Clip = ({
   id,
   bookId,
@@ -65,6 +62,7 @@ const Clip = ({
   src,
   handleUpdateClip,
   handleDeleteClip,
+  minClipDuration,
 }) => {
   const [currentView, setCurrentView] = useState(CLIP_VIEWS.ITEM);
 
@@ -74,6 +72,7 @@ const Clip = ({
     return (
       <AudioPlayerContainer
         src={src}
+        minClipDuration={minClipDuration}
         initialValues={{ min: 0, from, to, max: 'auto' }}
         AudioPlayerComponent={AudioClip}
         audioClipinitialValues={{ title, description }}
@@ -122,7 +121,11 @@ const Clip = ({
 
   if (currentView === CLIP_VIEWS.ITEM) {
     return (
-      <ClipItem {...clip} onListen={() => setCurrentView(CLIP_VIEWS.LISTEN)} />
+      <ClipItem
+        {...clip}
+        createdAt={createdAt}
+        onListen={() => setCurrentView(CLIP_VIEWS.LISTEN)}
+      />
     );
   }
 

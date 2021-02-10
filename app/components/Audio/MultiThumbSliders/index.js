@@ -1,3 +1,4 @@
+import classnames from 'classnames';
 import { MultiThumbSliders } from 'components';
 
 import {
@@ -9,9 +10,9 @@ import {
 
 import styles from './styles.module.css';
 
-const MultiThumbSlidersAudio = ({ currentTime, min, max, from, to, ...rest }) => {
+const MultiThumbSlidersAudio = ({ currentTime, min, max, from, to, className, ...rest }) => {
   return (
-    <div className={styles.MultiThumbSlidersAudio}>
+    <div className={classnames(styles.MultiThumbSlidersAudio, className)}>
       <RangeLabelMinValue value={min} className={styles.label} />
       <RangeLabelMaxValue value={max} className={styles.label} />
       <RangeCurrentValue

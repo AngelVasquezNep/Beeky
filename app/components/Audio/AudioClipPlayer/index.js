@@ -9,6 +9,8 @@ import styles from './styles.module.css';
 const AudioClipPlayer = ({
   className,
 
+  minClipDuration,
+
   currentTime,
   to,
   from,
@@ -42,6 +44,8 @@ const AudioClipPlayer = ({
         currentTime={currentTime}
         handleChangeFrom={updateFromValue}
         handleChangeTo={updateToValue}
+        minRange={minClipDuration}
+        className={styles.MultiThumbSlidersAudio}
       />
 
       <ControlsContainer>

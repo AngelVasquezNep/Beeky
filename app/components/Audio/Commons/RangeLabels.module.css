@@ -26,8 +26,9 @@
 
 .RangeCurrentValue {
   width: 4px;
-  height: 1.1rem;
+  height: 0.3rem;
   background-color: var(--colors-primary);
-  top: 0rem;
+  box-shadow: 0 0 2px 2px var(--colors-primary);
+  top: 0.4rem;
   z-index: 1;
 }

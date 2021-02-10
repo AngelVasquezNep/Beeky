@@ -23,6 +23,9 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  border: 1px solid var(--colors-primary);
+  border-radius: 0.3rem;
+  padding: 0.5rem;
 }
 
 .ClipListItemTitle {

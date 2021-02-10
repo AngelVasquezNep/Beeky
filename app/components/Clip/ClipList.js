@@ -6,7 +6,7 @@ import Clip from 'components/Clip';
 
 import styles from './styles.module.css';
 
-const ClipList = ({ clips, handleUpdateClip, handleDeleteClip }) => (
+const ClipList = ({ clips, handleUpdateClip, handleDeleteClip, minClipDuration }) => (
   <Fragment>
     <h1>Clips</h1>
     <div className={styles.ClipList}>
@@ -14,6 +14,7 @@ const ClipList = ({ clips, handleUpdateClip, handleDeleteClip }) => (
         <Clip
           {...clip}
           key={clip.id}
+          minClipDuration={minClipDuration}
           handleUpdateClip={handleUpdateClip}
           handleDeleteClip={handleDeleteClip}
         />
