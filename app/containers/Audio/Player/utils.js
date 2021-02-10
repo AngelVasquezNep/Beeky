@@ -7,7 +7,10 @@ export const calculateInialValues = (initialValues) => {
     ...initialValues,
 
     min: initialValues.min ?? initialValues.from ?? 0,
-    max: initialValues.max ?? initialValues.to ?? 0,
+    max:
+      initialValues.max === 'auto'
+        ? 0
+        : initialValues.max ?? initialValues.to ?? 0,
     lastVolume: volume,
     volume: muted ? 0 : volume,
     muted: volume === 0 || muted,
@@ -58,8 +61,8 @@ export const calculareAudioBuffered = (audioBuffered) =>
 
 /**
  * getRightCurrentTime
- * @param {Object} audioInfo 
- * @param {Number} newCurrentTime 
+ * @param {Object} audioInfo
+ * @param {Number} newCurrentTime
  */
 export const getRightCurrentTime = (audioInfo, newCurrentTime) => {
   const { from, to, currentTime } = audioInfo;

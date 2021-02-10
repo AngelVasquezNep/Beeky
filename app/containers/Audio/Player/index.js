@@ -18,11 +18,7 @@ const INITIAL_PLAYER_STATE = {
   muted: false,
 };
 
-const PlayerContainer = ({
-  initialValues,
-  AudioPlayerComponent,
-  ...rest
-}) => {
+const PlayerContainer = ({ initialValues, AudioPlayerComponent, ...rest }) => {
   const audioRef = useRef(null);
   const [audio, setAudio] = useState(null);
   const [audioInfo, setAudioInfo] = useState(() =>
@@ -47,7 +43,10 @@ const PlayerContainer = ({
     updateAudioInfo({
       currentTime,
       duration: audio.duration ?? 0,
-      max: initialValues?.max ?? initialValues.to ?? audio.duration ?? 0,
+      max:
+        initialValues?.max === 'auto'
+          ? audio.duration ?? 0
+          : initialValues?.max ?? initialValues.to ?? audio.duration ?? 0,
       to: getLastMinute(initialValues.to, audio.duration),
     });
   }, [audioRef]);
@@ -78,7 +77,10 @@ const PlayerContainer = ({
     setAudioInfo(
       mergeAudioInfo({
         duration: duration ?? 0,
-        max: initialValues?.max ?? initialValues.to ?? duration ?? 0,
+        max:
+          initialValues?.max === 'auto'
+            ? audio.duration ?? 0
+            : initialValues?.max ?? initialValues.to ?? audio.duration ?? 0,
         to: getLastMinute(initialValues.to, duration),
       }),
     );
@@ -96,7 +98,7 @@ const PlayerContainer = ({
       setAudioCurrentTime(audioInfo.from);
       updateAudioInfo({ currentTime: audioInfo.from });
     } else {
-      // Don't set here currentTime at audio reference to prevent 
+      // Don't set here currentTime at audio reference to prevent
       // wrong behavior
       updateAudioInfo({ currentTime });
     }
