@@ -1,0 +1,29 @@
+.PlayerApp {
+  width: 100%;
+  max-width: var(--container-width);
+  width: var(--container-width);
+} 
+
+.AudioPlayerSection {
+  display: flex;
+  flex-direction: column;
+}
+
+.AudioPlayerSection .BookmarkButton {
+  align-self: flex-end;
+  margin-bottom: 0.5rem;
+}
+
+.AudioPlayerSection .AudioBookmarkButton {
+  align-self: flex-start;
+  margin-top: 0.5rem;
+}
+
+.AudioClipListSection {
+  display: flex;
+  flex-direction: column;
+}
+
+.AudioClipListSection .CancelButton {
+  align-self: flex-end;
+}
