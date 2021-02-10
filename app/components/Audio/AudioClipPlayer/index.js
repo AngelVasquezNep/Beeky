@@ -72,8 +72,4 @@ const AudioClipPlayer = ({
   );
 };
 
-AudioClipPlayer.defaultProps = {
-  title: 'Title',
-};
-
 export default AudioClipPlayer;

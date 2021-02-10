@@ -34,7 +34,7 @@ const Cover = ({ cover, title, loading, ...rest }) => {
 
 const Title = ({ title }) => {
   if (title) {
-    <h2 className={styles.Title}>{title}</h2>;
+    return <h2 className={styles.Title}>{title}</h2>;
   }
 
   return null;
@@ -113,10 +113,6 @@ const Player = ({
       />
     </div>
   );
-};
-
-Player.defaultProps = {
-  title: 'Title',
 };
 
 export default Player;
