@@ -19,10 +19,11 @@ const AudioClip = ({
   from,
   onSaveClip,
   handleCancel,
+  audioClipinitialValues,
   ...rest
 }) => {
   const { formData, handleInputChange, handleSubmit } = useForm(
-    INITIAL_FORM_VALUES,
+    {...INITIAL_FORM_VALUES, ...audioClipinitialValues},
     handleSaveClip,
   );
 
