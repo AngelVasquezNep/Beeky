@@ -1,5 +1,5 @@
 .ClipList .Clip,
-.ClipList .ClipListItem {
+.ClipList .ClipItem {
   margin-bottom: 0.5rem;
 }
 
@@ -19,7 +19,7 @@
   margin: 0 0.3rem;
 }
 
-.ClipListItem {
+.ClipItem {
   display: flex;
   align-items: center;
   justify-content: space-between;

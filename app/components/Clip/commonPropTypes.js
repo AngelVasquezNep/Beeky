@@ -9,7 +9,7 @@ export const ClipPropTypes = {
 
 export const AudioClipPropTypes = {
   src: PropTypes.string.isRequired,
-  bookId: PropTypes.oneOf([PropTypes.string, PropTypes.number]).isRequired,
+  bookId: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
   bookTitle: PropTypes.string.isRequired,
 
   clip: PropTypes.shape(ClipPropTypes),

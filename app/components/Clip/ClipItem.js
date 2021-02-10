@@ -4,8 +4,8 @@ import { Button } from 'controls';
 
 import styles from './styles.module.css'
 
-const ClipListItem = ({ title, onListen }) => (
-  <div className={styles.ClipListItem}>
+const ClipItem = ({ title, onListen }) => (
+  <div className={styles.ClipItem}>
     <p className={styles.ClipListItemTitle}>{title}</p>
 
     <Button size="small" onClick={onListen}>
@@ -14,6 +14,6 @@ const ClipListItem = ({ title, onListen }) => (
   </div>
 );
 
-ClipListItem.propTypes = ClipPropTypes;
+ClipItem.propTypes = ClipPropTypes;
 
-export default ClipListItem;
+export default ClipItem;
