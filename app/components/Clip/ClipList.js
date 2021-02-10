@@ -4,14 +4,19 @@ import { AudioClipPropTypes } from './commonPropTypes';
 
 import Clip from 'components/Clip';
 
-import styles from './styles.module.css'
+import styles from './styles.module.css';
 
-const ClipList = ({ clips }) => (
+const ClipList = ({ clips, handleUpdateClip, handleDeleteClip }) => (
   <Fragment>
     <h1>Clips</h1>
     <div className={styles.ClipList}>
       {clips.map((clip) => (
-        <Clip {...clip} key={clip.id} />
+        <Clip
+          {...clip}
+          key={clip.id}
+          handleUpdateClip={handleUpdateClip}
+          handleDeleteClip={handleDeleteClip}
+        />
       ))}
       {clips.length === 0 && <p>Sin clips</p>}
     </div>
