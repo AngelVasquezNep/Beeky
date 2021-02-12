@@ -7,7 +7,28 @@ You can create audio notes at specific time into your audio book, also you will 
 
 Have fun and make audio notes!
 
-![Cover](https://github.com/AngelVasquezNep/Beeky/blob/main/public/Cover.png?raw=true)
-![Cover](https://github.com/AngelVasquezNep/Beeky/blob/main/public/Notes.png?raw=true)
-![Cover](https://github.com/AngelVasquezNep/Beeky/blob/main/public/Clips.png?raw=true)
-![Cover](https://github.com/AngelVasquezNep/Beeky/blob/main/public/Clips_detail.png?raw=true)
+## Screenshots
+----
+<br>
+
+<p align="center">
+  <img width="300" height="400" src="https://github.com/AngelVasquezNep/Beeky/blob/main/public/Cover.png?raw=true">
+</p>
+
+
+### Create your note
+<p align="center">
+  <img width="400" height="300" src="https://github.com/AngelVasquezNep/Beeky/blob/main/public/Notes.png?raw=true">
+</p>
+
+### See your notes
+
+<p align="center">
+  <img width="400" height="180" src="https://github.com/AngelVasquezNep/Beeky/blob/main/public/Clips.png?raw=true">
+</p>
+
+### Edit, delete or just listen your notes.
+
+<p align="center">
+  <img width="400" height="280" src="https://github.com/AngelVasquezNep/Beeky/blob/main/public/Clips_detail.png?raw=true">
+</p>
