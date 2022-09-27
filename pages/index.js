@@ -48,7 +48,7 @@ function Home() {
         minClipDuration={30}
         title="Cien años de soledad"
         src="https://samples.findawayworld.com/363461/363461_sample.mp3"
-        cover="https://horcrux1.beek.io/caWKfzkoF0sNwmWPqRNBSO1lMqk=/264x394/smart/store/507ea783cdc56e18967b431ad8ad3b140a58e0456810f9c9ce8ed188354d"
+        cover="soledad.jpg"
       />
     </div>
   );
